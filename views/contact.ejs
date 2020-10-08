@@ -5,14 +5,69 @@
 <div class="jumbotron">
   <h1 class="display-6">Welcome to the Iksang's  <%= title %> page!</h1>
   <hr class="my-4">
-  <p><h4>Mission Statements: </h4></p>
-  <ul class = "list">
-      <li>To be positive</li>
-      <li>To keep healthy</li>
- </ul>
- <p>&nbsp;</p><p>&nbsp;</p>
- <p><h4>Please click below button to learn more about me.</h4></p>
-  <a class="btn btn-primary btn-lg" href="/about" role="button">About Me</a>
+  <p><h4>My contact information</h4></p>
+  <ul>
+    <li><b>Email: </b>iyoo1@my.centennialcollege.ca</li>
+    <li><b>Phone: </b>647-123-456</li>
+  </ul>
+  <p><h4>Please put your contact inforamtion</h4></p>
+  <form class="needs-validation" novalidate>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="validationTooltip01">Name</label>
+        <input type="text" class="form-control" id="validationTooltip01" value="" required>
+        <div class="valid-tooltip">
+          Looks good!
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="validationTooltip02">Email</label>
+        <input type="text" class="form-control" id="validationTooltip02" value="" required>
+        <div class="valid-tooltip">
+          Looks good!
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="validationTooltip03">Phone</label>
+        <input type="text" class="form-control" id="validationTooltip03" required>
+        <div class="invalid-tooltip">
+          Please provide a valid city.
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip04">State</label>
+        <select class="custom-select" id="validationTooltip04" required>
+          <option selected disabled value="">Choose...</option>
+          <option>YT</option>
+          <option>NT</option>
+          <option>NU</option>
+          <option>BC</option>
+          <option>AB</option>
+          <option>SK</option>
+          <option>MB</option>
+          <option>ON</option>
+          <option>QC</option>
+          <option>NB</option>
+          <option>PE</option>
+          <option>NS</option>
+          <option>NL</option>
+        </select>
+        <div class="invalid-tooltip">
+          Please select a valid state.
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip05">City</label>
+        <input type="text" class="form-control" id="validationTooltip05" required>
+        <div class="invalid-tooltip">
+          Please provide a valid zip.
+        </div>
+      </div>
+    </div>
+    <a class="btn btn-primary btn-lg" href="/home" role="button">Submit</a>
+  </form>
 </div>
 
 <% include partials/bottom_nav.ejs %>
