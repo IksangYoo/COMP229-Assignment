@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('./app');
+var app = require('./config/app.js');
 var debug = require('debug')('iksangyoo-comp229-assignment:server');
 var http = require('http');
 const { fstat } = require('fs');
