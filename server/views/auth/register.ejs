@@ -7,9 +7,9 @@
     <hr class="my-4">
     <main class="container">
         <!-- Message Area -->
-        <%if(message.length > 0) {%>
+        <%if(messages.length > 0) {%>
             <div class = "alert alert-danger">
-                <%= message %>
+                <%= messages %>
             </div>
         <% } %>
         
@@ -47,7 +47,7 @@
 
 
                     <fieldset class="form-group text-right">
-                        <input type="submit" class="btn btn-success" value="Login">
+                        <input type="submit" class="btn btn-success" value="Register">
                         <a href="/">
                             <input type="button"class="btn btn-warning" value="Cancle">
                         </a>

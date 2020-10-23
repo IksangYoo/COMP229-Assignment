@@ -15,7 +15,10 @@ module.exports.displayBsContactList = (req, res, next) => {
         {   
             //console.log(BsContactList);
 
-            res.render('bscontact/list', {title: 'BsContact', BsContactList: bsContactList});
+            res.render('bscontact/list', 
+            {title: 'BsContact',
+             BsContactList: bsContactList,
+              displayName: req.user ? req.user.displayName : ''});
         }
     });
 }
@@ -57,7 +60,8 @@ module.exports.displayEditPage =  (req, res, next) => {
         else
         {
             //show the edit view
-            res.render('bscontact/edit', {title: 'Edit BsContact', bscontact: bscontactToEdit})
+            res.render('bscontact/edit', {title: 'Edit BsContact', bscontact: bscontactToEdit,
+            displayName: req.user ? req.user.displayName : ''})
         }
     });
 };

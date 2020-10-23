@@ -1,6 +1,8 @@
 // require modules for the user Model
 let mongoose = require('mongoose');
 let passportLocalMongoose = require('passport-local-mongoose');
+let Model = mongoose.Schema;
+let Schema = mongoose.Schema;
 
 let User = mongoose.Schema
 (
