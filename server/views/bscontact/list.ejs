@@ -5,48 +5,41 @@
     <h1 class="display-6">Welcome to the Iksang's  Business Contact page!</h1>
     <hr class="my-4">
  <!-- Main Content -->
-     <div class="row">
-         <div class="col-md-offset-3 col-md-8">
-
-            <% if(typeof displayName == 'string' && displayName) { %>
-             <a href="/bscontact-list/add" class="btn btn-primary" role= "button">
-             <i class="fas fa-plus-circle"></i> Add a Business Contact</a>
-             <% } %>
-             <br>
-             <table class="table table-bordered table-striped table-hover">
-                 <!-- Header Row-->
-                 <tr class=>
-                     <th class= "text-center ">Name</th>
+    <div class="row">
+        <div class="offset-md-1 col-md-11">
+            <a href="/bscontact-list/add" class="btn btn-primary" role="button">
+            <i class="fas fa-plus-circle"></i> Add a Business Contact</a>
+            <br>
+            <table class="table table-bordered table-striped table-hover">
+                <!-- Header Row-->
+                <tr class=>
+                    <th class= "text-center ">Name</th>
                      <th class= "text-center ">Number</th>
                      <th class= "text-center ">E-mail</th>
-                     <% if(typeof displayName == 'string' && displayName) { %>
-                     <th class= "text-center "></th>
-                     <th class= "text-center "></th>
-                     <% } %>
-                 </tr>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                </tr>
 
-                 <!-- Repeatable Template Row-->
+                <!-- Repeatable Template Row -->
 
-                 <% for(let count = 0; count < BsContactList.length; count++) { %>
-                    <tr>
-                        <td class= "text-center"><%= BsContactList[count].name %></td>
-                        <td class= "text-center"><%= BsContactList[count].number %></td>
-                        <td class= "text-center"><%= BsContactList[count].email %></td>
-                        
-                        <% if(typeof displayName == 'string' && displayName) { %>
-                        <td class= "text-center">
-                            <a href="/bscontact-list/edit/<%= BsContactList[count]._id%>" class="btn btn-primary btn-sm">
-                            <i class="fas fa-pencil-alt"></i> Update</a>
+                <% for(let count = 0; count < BsContactList.length; count++) { %>
+                    <tr class=>
+                        <td class="text-center"><%= BsContactList[count].name %></td>
+                        <td class="text-center"><%= BsContactList[count].number %></td>
+                        <td class="text-center"><%= BsContactList[count].email %></td>
+                        <td class="text-center">
+                            <a href="/bscontact-list/edit/<%= BsContactList[count]._id %>" class="btn btn-primary btn-sm">
+                            <i class="fas fa-pencil-alt"></i> Edit</a>
                         </td>
-                        <td class= "text-center">
-                            <a href="/bscontact-list/delete/<%= BsContactList[count]._id%>" class="btn btn-danger btn-sm">
+                        <td class="text-center">
+                            <a href="/bscontact-list/delete/<%= BsContactList[count]._id %>" class="btn btn-danger btn-sm">
                             <i class="fas fa-trash-alt"></i> Delete</a>
                         </td>
-                        <% } %>
                     </tr>
-                 <% } %>
-             </table>
-         </div>
+                <% } %>
+            </table>
+        </div>
+    </div>
      </div>
 
 <% include ../partials/bottom_nav.ejs %>

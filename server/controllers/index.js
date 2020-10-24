@@ -3,28 +3,32 @@ let router = express.Router();
 let mongoose = require('mongoose');
 let passport = require('passport');
 
+// enable jwt
+let jwt = require('jsonwebtoken');
+let DB = require('../config/db');
+
 // create the User Model instance
 let userModel = require('../models/user');
-let User = userModel.user; // allias
+let User = userModel.User; // allias
 
 module.exports.displayHomePage = (req, res, next) => {
-    res.render('index', {title: 'Home', displayName: req.user ? req.displayName : ''});
+    res.render('index', {title: 'Home', displayName: req.user ? req.user.displayName : ''});
 }
 
 module.exports.displayAboutPage = (req, res, next) => {
-    res.render('about', {title: 'About' , displayName: req.user ? req.displayName : ''});
+    res.render('about', {title: 'About' , displayName: req.user ? req.user.displayName : ''});
 }
 
 module.exports.displayProjectsPage = (req, res, next) => {
-    res.render('projects', {title: 'Projects' , displayName: req.user ? req.displayName : ''});
+    res.render('projects', {title: 'Projects' , displayName: req.user ? req.user.displayName : ''});
 }
 
 module.exports.displayServicesPage = (req, res, next) => {
-    res.render('services', {title: 'Services', displayName: req.user ? req.displayName : ''});
+    res.render('services', {title: 'Services', displayName: req.user ? req.user.displayName : ''});
 }
 
 module.exports.displayContactPage = (req, res, next) => {
-    res.render('contact', {title: 'Contact', displayName: req.user ? req.displayName : ''});
+    res.render('contact', {title: 'Contact', displayName: req.user ? req.user.displayName : ''});
 }
 
 module.exports.displayLoginPage = (req, res, next) => {
@@ -64,6 +68,26 @@ module.exports.processLoginPage = (req, res, next) => {
             {
                 return next(err);
             }
+
+            const payload =
+            {
+                id: user._id,
+                displayName: user.displayName,
+                username: user.username,
+                email: user.email
+            }
+
+            const authToken = jwt.sign(payload, DB.Secret, {
+                expiresIn: 604800 // 1 week
+            });
+
+           /* res.json({success: true, msg: 'User Logged in Successfully!', user:{
+                id: user._id,
+                displayName: user.displayName,
+                username: user.username,
+                email: user.email
+            }, token: authToken});*/
+
             return res.redirect('/bscontact-list');
         });
     })(req, res, next);
@@ -90,7 +114,7 @@ module.exports.processRegisterPage = (req, res, next) => {
     // instantiate a user object
     let newUser = new User({
         "username": req.body.username,
-        //password: req.body.password
+        "password": req.body.password,
         "email": req.body.email,
         "displayName": req.body.displayName
     });
@@ -119,6 +143,7 @@ module.exports.processRegisterPage = (req, res, next) => {
             // if no error exists, then registeration is successful
 
             // redirect the user and authenticate them
+
 
             return passport.authenticate('local')(req, res, () => {
                 res.redirect('/bscontact-list')
